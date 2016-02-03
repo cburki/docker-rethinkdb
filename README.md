@@ -1,10 +1,18 @@
 Summary
 -------
 
-RethinkDB server image. It extend the official rethinkdb[1] image in the way
-that it allow to join a cluster when running the image. This image also secure
-the driver port by using the authentication system. For persistent storage,
-you could use the cburki/volume-data container to store the database data.
+RethinkDB server image. It extend the official [rethinkdb](https://hub.docker.com/_/rethinkdb/) 
+image in the way that it allow to join a cluster when running the image. This
+image also secure the driver port by using the authentication system. For
+persistent storage, you could use the cburki/volume-data container to store
+the database data.
+
+The web interface is not secured. Anybody could access the web interface if
+the port 8080 is exposed on a non protected network. The web interface could
+be protected by a reverse proxy which enforce an authentication before allowing
+an access to the web interface. The cburki/nginx-rproxy-auth docker image could
+be used. The rethinkdb web interface port (8080) would also not be exported and
+a link will be used between rethinkdb and the reverse proxy.
 
 
 Build the image
@@ -20,8 +28,8 @@ Configure the image
 -------------------
 
 You can secure the driver port by giving a password. This will set an
-authentication key which is then required to connect to the cluster.
-Note that this will not secure the web interface.
+authentication key which is then required to connect to the cluster. Note that
+this will not secure the web interface.
 
     - RETHINKDB_AUTH_KEY : The driver authentication key. Authentication is not enabled if none is given.
 
