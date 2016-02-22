@@ -10,9 +10,16 @@ the database data.
 The web interface is not secured. Anybody could access the web interface if
 the port 8080 is exposed on a non protected network. The web interface could
 be protected by a reverse proxy which enforce an authentication before allowing
-an access to the web interface. The cburki/nginx-rproxy-auth docker image could
-be used. The rethinkdb web interface port (8080) would also not be exported and
-a link will be used between rethinkdb and the reverse proxy.
+an access to the web interface. The following two images could be used.an
+
+    - [cburki/nginx-rproxy-auth](https://hub.docker.com/r/cburki/nginx-rproxy-auth/)
+    - [cburki/haproxy-confd](https://hub.docker.com/r/cburki/haproxy-confd/)
+
+The first one only support HTTP protocol so it can only be used for proxying
+the HTP web interface. The second one support TCP and HTTP and it can therefore
+be used for proxying all the ports.
+
+You should not export the rethinkdb ports when you chose to proxy them.
 
 
 Build the image
