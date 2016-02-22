@@ -27,4 +27,4 @@ fi
 
 echo "done" >> ${AUTH_STATUS_FILE}
 
-/usr/local/bin/dumb-init /usr/bin/rethinkdb $@
+exec /usr/local/bin/dumb-init /usr/bin/rethinkdb $@
