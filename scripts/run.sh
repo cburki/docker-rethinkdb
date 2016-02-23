@@ -23,6 +23,7 @@ if [ -n "${RETHINKDB_AUTH_KEY}" ]; then
 
     echo "Stoping rethinkdb"
     kill $(cat ${PIDFILE})
+    sleep 5
 fi
 
 echo "done" >> ${AUTH_STATUS_FILE}
