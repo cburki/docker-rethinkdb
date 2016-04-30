@@ -12,8 +12,8 @@ the port 8080 is exposed on a non protected network. The web interface could
 be protected by a reverse proxy which enforce an authentication before allowing
 an access to the web interface. The following two images could be used.an
 
-    - [cburki/nginx-rproxy-auth](https://hub.docker.com/r/cburki/nginx-rproxy-auth/)
-    - [cburki/haproxy-confd](https://hub.docker.com/r/cburki/haproxy-confd/)
+[cburki/nginx-rproxy-auth](https://hub.docker.com/r/cburki/nginx-rproxy-auth/)
+[cburki/haproxy-confd](https://hub.docker.com/r/cburki/haproxy-confd/)
 
 The first one only support HTTP protocol so it can only be used for proxying
 the HTP web interface. The second one support TCP and HTTP and it can therefore
