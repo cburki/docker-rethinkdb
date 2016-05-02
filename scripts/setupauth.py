@@ -3,11 +3,11 @@ import rethinkdb as r
 
 def main() :
 
-    auth_key = os.environ['RETHINKDB_AUTH_KEY']
-    print("Setting up rethinkdb authentication with key : {}".format(auth_key))
+    password = os.environ['RETHINKDB_ADMIN_PASSWORD']
+    print("Setting up rethinkdb admin with password : {}".format(auth_key))
 
     conn = r.connect('localhost', 28015)
-    r.db('rethinkdb').table('cluster_config').get('auth').update({'auth_key' : auth_key}).run(conn)
+    r.db('rethinkdb').table('users').get('admin').update({'password' : password}).run(conn)
     conn.close()
 
 

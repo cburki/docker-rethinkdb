@@ -34,11 +34,12 @@ folder.
 Configure the image
 -------------------
 
-You can secure the driver port by giving a password. This will set an
-authentication key which is then required to connect to the cluster. Note that
-this will not secure the web interface.
+A new RethinkDB cluster always has one user named admin; this user always has
+all permissions at a global scope, and the user cannot be deleted. By default,
+the admin user has no password. You can change this by setting the following
+environment variable.
 
-    - RETHINKDB_AUTH_KEY : The driver authentication key. Authentication is not enabled if none is given.
+    - RETHINKDB_ADMIN_PASSWORD : The driver admin password. Admin user has not password if none is given.
 
 
 Run the image
@@ -52,7 +53,7 @@ cluster.
         --name rethinkdb \
         --volumes-from rethink-data \
         -d \
-        -e RETHINKDB_AUTH_KEY=my_secret_key \
+        -e RETHINKDB_ADMIN_PASSWORD=my_secret_password \
         -p 8080:8080 \
         -p 28015:28015 \
         -p 29015:29015 \
@@ -66,7 +67,7 @@ node.
         --name rethinkdb \
         --volumes-from rethink-data \
         -d \
-        -e RETHINKDB_AUTH_KEY=my_secret_key \
+        -e RETHINKDB_ADMIN_PASSWORD=my_secret_password \
         -p 8080:8080 \
         -p 28015:28015 \
         -p 29015:29015 \
