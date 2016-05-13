@@ -9,7 +9,7 @@ if [ -f ${AUTH_STATUS_FILE} ]; then
     exit 0
 fi
 
-if [ -n "${RETHINKDB_AUTH_KEY}" ]; then
+if [ -n "${RETHINKDB_ADMIN_PASSWORD}" ]; then
 
     # Start rethinkdb for setting up the authentication
     echo "Starting rethinkdb"
@@ -17,9 +17,9 @@ if [ -n "${RETHINKDB_AUTH_KEY}" ]; then
     /usr/bin/rethinkdb --bind 127.0.0.1 --pid-file ${PIDFILE} --daemon
     sleep 10
 
-    echo "Setting up authentication key"
-    echo ${RETHINKDB_AUTH_KEY} > ${STATE_DIR}/rethinkdb-driver-key.txt
-    RETHINKDB_AUTH_KEY=${RETHINKDB_AUTH_KEY} python3 /opt/setupauth.py
+    echo "Setting up the admin authentication password"
+    echo ${RETHINKDB_ADMIN_PASSWORD} > ${STATE_DIR}/rethinkdb-admin-password.txt
+    RETHINKDB_ADMIN_PASSWORD=${RETHINKDB_ADMIN_PASSWORD} python3 /opt/setupauth.py
 
     echo "Stoping rethinkdb"
     kill $(cat ${PIDFILE})
