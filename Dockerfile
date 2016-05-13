@@ -1,4 +1,4 @@
-FROM rethinkdb:2.3.1
+FROM rethinkdb:2.3.2
 MAINTAINER Christophe Burki, christophe.burki@gmail.com
 
 # Install system requirements
